@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+    <body>
+        <h1>Acme User Search</h1>
+        <form class = "inputForm">
+            <input type="text" name="search">
+            </form>
+            <div  class = "title">
+                <div class = "title" >First Name</div>
+                <div class = "title">Last Name</div>
+                <div class = "title">Email</div>
+                <div class = "title">Title</div>
+            </div>
+            <div id = "data">
+
+            </div>
+
+            <script>
+             var x = document.getElementsByClassName("inputForm");
+
+            fetch(`https://acme-users-api-rev.herokuapp.com/api/users`)
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (myJson) {
+
+                        // users
+                        let allUsers = myJson.users;
+                        // returnArr: [ {"firstName": ...}, {}]
+                        // Build an array with values  that match search
+
+                        function shouldThisExistInArray(user) {
+                            // returns: ?
+                            for(let key in user){
+                                if(user[key].includes(x)){
+                                    return false;
+                                }
+                            }
+                        }
+
+                        let filteredUsers = allUsers.filter(shouldThisExistInArray);
+                        console.log(filteredUsers)
+
+                        // let html = returnArr.filter(dataObj =>
+                        //     `<div class= "line"><div class ='firstName'>${dataObj.firstName}</div><div class="lastName">${dataObj.lastName}</div><div class="email">${dataObj.email}</div><div class="title">${dataObj.title}</div></div>`
+                        // ).join("");
+
+                        //data.innerHTML = html
+
+
+                    })
+
+
+                const data = document.querySelector("#data")
+                    
+                
+            
+            
+            
+            
+            </script>
+        </form>
+    
+    </body>
+</html>

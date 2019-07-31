@@ -1,0 +1,10 @@
+.title{
+    display: flexbox;
+    flex-direction: row;
+}
+
+.inputForm{
+     display: flexbox;
+     width: 80%
+
+}
